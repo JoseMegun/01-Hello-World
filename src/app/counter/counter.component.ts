@@ -8,21 +8,29 @@ import { Component } from '@angular/core';
 export class CounterComponent {
   counter = 0;
   activeDecrease = false;
+  activeIncrease = true;
 
   increase() {
     // this.counter = this.counter + 1;
     this.counter++;
+    if (this.counter > 0) {
+      this.activeDecrease = true;
+    }
+    if (this.counter === 0) {
+      this.activeIncrease = true;
+    }
   }
 
   decrease() {
     // this.counter = this.counter - 1;
-    this.counter--;
-    if (this.counter === 0) {
-      this.activeDecrease = true;
+    if (this.counter > 0) {
+      this.counter--;
     }
-  }
-
-  inactiveDecrease() {
-    this.activeDecrease = !this.activeDecrease;
+    if (this.counter === 0) {
+      this.activeDecrease = false;
+    }
+    if (this.counter < 0) {
+      this.activeIncrease = false;
+    }
   }
 }
